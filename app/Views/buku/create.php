@@ -1,66 +1,50 @@
-<?= $this->extend('layouts/main') ?>
-<?= $this->section('content') ?>
-<h3>Tambah Buku</h3>
+<div style="max-width: 600px; margin: 20px auto; padding: 20px; border: 1px solid #ddd; border-radius: 10px; background-color: #f9f9f9; font-family: sans-serif;">
+    
+    <h2 style="text-align: center; color: #333;">Tambah Buku Baru</h2>
+    <hr>
 
-<form method="post" action="<?= base_url('buku/store') ?>" enctype="multipart/form-data">
+    <form action="<?= base_url('buku/store') ?>" method="post" enctype="multipart/form-data">
+        <?= csrf_field(); ?>
 
-    Judul:<br>
-    <input type="text" name="judul"><br><br>
+        <div style="margin-bottom: 15px;">
+            <label style="display: block; font-weight: bold; margin-bottom: 5px;">ISBN</label>
+            <input type="text" name="isbn" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 5px;" placeholder="Contoh: 978-602-..." required>
+        </div>
 
-    ISBN:<br>
-    <input type="text" name="isbn"><br><br>
+        <div style="margin-bottom: 15px;">
+            <label style="display: block; font-weight: bold; margin-bottom: 5px;">Judul Buku</label>
+            <input type="text" name="judul" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 5px;" placeholder="Masukkan judul lengkap" required>
+        </div>
 
-    Kategori:<br>
-    <select name="id_kategori">
-        <option value="">Pilih</option>
-        <?php foreach ($kategori as $k): ?>
-            <option value="<?= $k['id_kategori'] ?>"><?= $k['nama_kategori'] ?></option>
-        <?php endforeach; ?>
-    </select><br><br>
+        <div style="display: flex; gap: 10px; margin-bottom: 15px;">
+            <div style="flex: 1;">
+                <label style="display: block; font-weight: bold; margin-bottom: 5px;">Tahun Terbit</label>
+                <input type="number" name="tahun_terbit" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 5px;" placeholder="2024" required>
+            </div>
+            <div style="flex: 1;">
+                <label style="display: block; font-weight: bold; margin-bottom: 5px;">Jumlah Stok</label>
+                <input type="number" name="jumlah" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 5px;" placeholder="0" required>
+            </div>
+        </div>
 
-    Penulis:<br>
-    <select name="id_penulis">
-        <option value="">Pilih</option>
-        <?php foreach ($penulis as $p): ?>
-            <option value="<?= $p['id_penulis'] ?>"><?= $p['nama_penulis'] ?></option>
-        <?php endforeach; ?>
-    </select><br><br>
+        <div style="margin-bottom: 15px;">
+            <label style="display: block; font-weight: bold; margin-bottom: 5px;">Deskripsi / Sinopsis</label>
+            <textarea name="deskripsi" rows="4" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 5px;" placeholder="Tulis ringkasan buku..."></textarea>
+        </div>
 
-    Penerbit:<br>
-    <select name="id_penerbit">
-        <option value="">Pilih</option>
-        <?php foreach ($penerbit as $p): ?>
-            <option value="<?= $p['id_penerbit'] ?>"><?= $p['nama_penerbit'] ?></option>
-        <?php endforeach; ?>
-    </select><br><br>
+        <div style="margin-bottom: 20px;">
+            <label style="display: block; font-weight: bold; margin-bottom: 5px;">Cover Buku</label>
+            <input type="file" name="cover" accept="image/*" style="width: 100%; padding: 5px;">
+            <small style="color: #888;">Format: JPG, PNG, JPEG (Maks. 2MB)</small>
+        </div>
 
-    Rak:<br>
-    <select name="id_rak">
-        <option value="">Pilih</option>
-        <?php foreach ($rak as $r): ?>
-            <option value="<?= $r['id_rak'] ?>">
-                <?= $r['nama_rak'] ?> - <?= $r['lokasi'] ?>
-            </option>
-        <?php endforeach; ?>
-    </select><br><br>
-
-    Tahun Terbit:<br>
-    <input type="number" name="tahun_terbit"><br><br>
-
-    Jumlah:<br>
-    <input type="number" name="jumlah"><br><br>
-
-    Tersedia:<br>
-    <input type="number" name="tersedia"><br><br>
-
-    Deskripsi:<br>
-    <textarea name="deskripsi"></textarea><br><br>
-
-    Cover / file :<br>
-    <input type="file" name="cover"><br><br>
-
-    <button type="submit">Simpan</button>
-    <a href="<?= base_url('buku') ?>">Kembali</a>
-
-</form>
-<?= $this->endSection() ?>
+        <div style="display: flex; gap: 10px;">
+            <button type="submit" style="flex: 2; background-color: #28a745; color: white; padding: 10px; border: none; border-radius: 5px; cursor: pointer; font-weight: bold;">
+                💾 Simpan Data
+            </button>
+            <a href="<?= base_url('buku') ?>" style="flex: 1; text-align: center; background-color: #6c757d; color: white; padding: 10px; border: none; border-radius: 5px; text-decoration: none; font-size: 14px;">
+                Batal
+            </a>
+        </div>
+    </form>
+</div>

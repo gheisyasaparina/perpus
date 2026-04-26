@@ -13,7 +13,7 @@
     </tr>
     <tr>
         <td>ISBN</td>
-        <td><?= $buku['isbn'] ?></td>
+        <td><?= $buku['isbn'] ?? '-' ?></td>
     </tr>
     <tr>
         <td>Kategori</td>
@@ -29,7 +29,7 @@
     </tr>
     <tr>
         <td>Rak</td>
-        <td><?= $buku['nama_rak'] ?> - <?= $buku['lokasi'] ?></td>
+        <td><?= $buku['nama_rak'] ?> </td>
     </tr>
     <tr>
         <td>Tahun</td>
